@@ -1,3 +1,5 @@
 <div>
-   
+    @for(post of posts; track post) {
+        <app-post-item [post]="post"></app-post-item>
+    }
 </div>
