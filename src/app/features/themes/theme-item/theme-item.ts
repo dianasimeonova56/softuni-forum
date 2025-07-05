@@ -8,5 +8,5 @@ import { Theme } from '../../../models';
   styleUrl: './theme-item.css'
 })
 export class ThemeItem {
-  @Input() themeItem!: Theme;
+  @Input() theme!: Theme;
 }

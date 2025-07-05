@@ -5,6 +5,5 @@ export interface Theme {
     themeName: string;
     userId: User;
     subscribers: string[];
-    posts: string[];
-    createdAt: Date;
+    created_at: Date;
 }

@@ -5,6 +5,5 @@ export interface Post {
     id: string;
     text: string;
     userId: User;
-    themeId: Theme;
-    createdAt: Date;
+    created_at: Date;
 }
