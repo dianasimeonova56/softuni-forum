@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './post-board.html',
   styleUrl: './post-board.css'
 })
-export class PostBoard implements OnInit, OnDestroy {
+export class PostBoard{
   subscriptions: Subscription[] = [];
   posts: Post[] = [];
   post$: Observable<Post[]>;
@@ -19,15 +19,4 @@ export class PostBoard implements OnInit, OnDestroy {
   constructor(private postService: PostsService) {
     this.post$ = this.postService.getPosts();
    }
-
-  ngOnInit(): void {
-    // this.subscriptions.push(this.postService.getPosts()
-    //   .subscribe((posts: Post[]) => {
-    //     this.posts = posts;
-    //   }));
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
-  }
 }

@@ -11,24 +11,12 @@ import { CommonModule } from '@angular/common';
   templateUrl: './theme-board.html',
   styleUrl: './theme-board.css'
 })
-export class ThemeBoard implements OnInit, OnDestroy {
+export class ThemeBoard{
   subscriptions: Subscription[] = [];
   themes: Theme[] = [];
   theme$: Observable<Theme[]>;
 
   constructor(private themeService: ThemesService) { 
     this.theme$ = this.themeService.getThemes();
-  }
-
-  ngOnInit(): void {
-    // this.subscriptions.push(
-    //   this.themeService.getThemes()
-    //   .subscribe((themes: Theme[]) => {
-    //     this.themes = themes;
-    //   }));
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }
