@@ -1,5 +1,7 @@
 <div>
-    @for(post of posts; track post) {
-        <app-post-item [post]="post"></app-post-item>
+    @for(post of post$ | async; track post.id) {
+    <app-post-item [post]="post"></app-post-item>
     }
+
+
 </div>

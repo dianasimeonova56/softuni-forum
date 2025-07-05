@@ -9,7 +9,7 @@ import { Post } from "../../models";
 })
 
 export class PostsService {
-    private apiUrl = 'https://localhost:3000/api/posts?limit={0}';
+    private apiUrl = 'http://localhost:3000/api/posts?limit={0}';
     
     constructor(private httpClient: HttpClient) { }
 

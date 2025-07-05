@@ -8,7 +8,7 @@ import {Theme} from '../../models'
 })
 
 export class ThemesService {
-    private apiUrl = 'https://localhost:3000/api/themes';
+    private apiUrl = 'http://localhost:3000/api/themes';
     
     constructor(private httpClient: HttpClient) { }
 

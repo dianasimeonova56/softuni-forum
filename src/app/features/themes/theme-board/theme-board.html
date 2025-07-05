@@ -1,6 +1,7 @@
 <!-- theme component  -->
 <div class="theme-title">
-    @for (theme of themes; track theme) {
-        <app-theme-item [theme]="theme"></app-theme-item>
+    @for (theme of theme$ | async; track theme.id) {
+    <app-theme-item [theme]="theme"></app-theme-item>
     }
+
 </div>
