@@ -12,8 +12,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './post-board.css'
 })
 export class PostBoard{
-  subscriptions: Subscription[] = [];
-  posts: Post[] = [];
   post$: Observable<Post[]>;
 
   constructor(private postService: PostsService) {
