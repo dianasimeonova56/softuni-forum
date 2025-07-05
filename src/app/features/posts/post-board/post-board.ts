@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PostsService } from '../../../core/services';
+import { Post } from '../../../models';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-post-board',
@@ -6,6 +9,16 @@ import { Component } from '@angular/core';
   templateUrl: './post-board.html',
   styleUrl: './post-board.css'
 })
-export class PostBoard {
+export class PostBoard implements OnInit {
+  posts: Post[] = [];
 
+  constructor(private postService: PostsService){}
+
+  ngOnInit(): void {
+    this.postService.getPosts()
+    .pipe(takeUntilDestroyed())
+    .subscribe((posts: Post[]) => {
+      this.posts = posts;
+    });
+  }
 }

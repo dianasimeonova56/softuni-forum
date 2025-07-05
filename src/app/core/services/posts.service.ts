@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Post } from "../models";
+import { Post } from "../../models";
+
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,7 @@ export class PostsService {
     
     constructor(private httpClient: HttpClient) { }
 
-    getRecentPosts(limit: number = 5): Observable<Post[]> {
+    getPosts(limit: number = 5): Observable<Post[]> {
         return this.httpClient.get<Post[]>(this.apiUrl.replace('{0}', limit.toString()) );
     }
 }
