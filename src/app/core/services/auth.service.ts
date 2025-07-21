@@ -7,13 +7,17 @@ import { User } from "../../models";
 })
 
 export class AuthService {
-    private _isLoggedIn = signal<boolean>(false);
+    //encapsulation for the service
+    private _isLoggedIn = signal<boolean>(false); //only the service can access the signals
     private _currentUser = signal<User | null>(null);
     private _users: User[] = [
         { id: '5fa64a072183ce1728ff3719', username: "David" },
         { id: '5fa64b162183ce1728ff371d', username: "Johny" },
         { id: '5fa64b972183ce1728ff3720', username: "Donald" },
     ]
+
+    public isLoggedIn = this._isLoggedIn.asReadonly(); // componnets can only READ it cant modify it 
+    public currentUser = this._currentUser.asReadonly();
 
     constructor() {
         const savedUser = localStorage.getItem('currentUser') // check if user exists
