@@ -7,7 +7,7 @@ import { PostBoard } from './features/posts';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Footer, ThemeBoard, PostBoard],
+  imports: [RouterOutlet, Header, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
