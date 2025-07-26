@@ -60,7 +60,7 @@ export class Register {
       this.phoneErrorMessage = 'Phone is required';
     } else if (!this.isValidPhone(this.phone)) {
       this.phoneError = true;
-      this.phoneErrorMessage = 'Email is not valid';
+      this.phoneErrorMessage = 'Phone is not valid';
     } else {
       this.phoneError = false;
       this.phoneErrorMessage = '';
@@ -79,9 +79,9 @@ export class Register {
       this.passwordErrorMessage = '';
     }
 
-    if (this.rePassword) { //check passowrd if changed
-      this.validatePassword();
-    }
+    // if (this.rePassword) { //check passowrd if changed
+    //   this.validatePassword();
+    // }
   }
 
   validateRePassword(): void {
@@ -135,6 +135,7 @@ export class Register {
 
   private isValidPhone(phone: string): boolean {
     const phoneRegex = /^\d{9}$/;
+    
     return phoneRegex.test(phone);
   }
 }
