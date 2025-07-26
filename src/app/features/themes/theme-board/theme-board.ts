@@ -1,20 +1,28 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ThemesService } from '../../../core/services';
-import { Theme } from '../../../models';
+import { Component, inject } from '@angular/core';
+import { AuthService, PostsService, ThemesService } from '../../../core/services';
+import { Post, Theme } from '../../../models';
 import { ThemeItem } from "../theme-item/theme-item";
 import { Observable, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { PostItem } from '../post-item/post-item';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-theme-board',
-  imports: [ThemeItem, CommonModule],
+  imports: [ThemeItem, CommonModule, PostItem, RouterLink],
   templateUrl: './theme-board.html',
   styleUrl: './theme-board.css'
 })
 export class ThemeBoard{
-  theme$: Observable<Theme[]>;
+  private authService = inject(AuthService);
+  readonly isLoggedIn = this.authService.isLoggedIn;
 
-  constructor(private themeService: ThemesService) { 
+  theme$: Observable<Theme[]>;
+  posts$: Observable<Post[]>;
+
+  constructor(private themeService: ThemesService, 
+    private postService: PostsService) { 
     this.theme$ = this.themeService.getThemes();
+    this.posts$ = this.postService.getPosts();
   }
 }

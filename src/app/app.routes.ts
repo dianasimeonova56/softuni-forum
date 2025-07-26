@@ -25,5 +25,10 @@ export const routes: Routes = [
         path: 'profile',
         loadComponent: ()=> import('./features/profile/profile').then(c=> c.Profile) 
         // angular will load all features, imgs, text, dependencies ONLY when we are in the desired page
+    },
+    {
+        path: 'themes',
+        loadComponent: ()=> import('./features/themes/theme-board/theme-board').then(c=> c.ThemeBoard) 
+        // angular will load all features, imgs, text, dependencies ONLY when we are in the desired page
     }
 ];
