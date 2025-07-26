@@ -33,12 +33,17 @@ export const routes: Routes = [
         // angular will load all features, imgs, text, dependencies ONLY when we are in the desired page
     },
     {
-        path: '**',
-        component: NotFound
+        path: 'new-theme',
+        loadComponent: ()=> import('./features/themes/new-theme/new-theme').then(c=> c.NewTheme) 
+        // angular will load all features, imgs, text, dependencies ONLY when we are in the desired page
     },
     {
         path: 'logout',
         redirectTo: '/home',
         pathMatch: 'full'
+    },
+    {
+        path: '**',
+        component: NotFound
     }
 ];

@@ -15,4 +15,6 @@ export class ThemesService {
     getThemes(): Observable<Theme[]> {
         return this.httpClient.get<Theme[]>(this.apiUrl);
     }
+
+    
 }

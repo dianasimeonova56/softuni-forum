@@ -9,11 +9,22 @@ import { Post } from "../../models";
 })
 
 export class PostsService {
-    private apiUrl = 'http://localhost:3000/api/posts?limit={0}';
+    private getPostsApiUrl = 'http://localhost:3000/api/posts?limit={0}';
+    private createPostsApiUrl = 'http://localhost:3000/api/posts'
+
     
     constructor(private httpClient: HttpClient) { }
 
     getPosts(limit: number = 5): Observable<Post[]> {
-        return this.httpClient.get<Post[]>(this.apiUrl.replace('{0}', limit.toString()) );
+        return this.httpClient.get<Post[]>(this.getPostsApiUrl.replace('{0}', limit.toString()) );
+    }
+
+    createPost(userId: string, themeName: string, postText: string): Observable<Post> {
+        const body = JSON.stringify({userId, themeName, postText})
+        return this.httpClient.post<Post>(this.createPostsApiUrl, body, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
     }
 }
