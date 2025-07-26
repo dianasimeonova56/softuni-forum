@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { NotFound } from './shared/components/not-found/not-found';
 
 export const routes: Routes = [
     {
@@ -30,5 +31,9 @@ export const routes: Routes = [
         path: 'themes',
         loadComponent: ()=> import('./features/themes/theme-board/theme-board').then(c=> c.ThemeBoard) 
         // angular will load all features, imgs, text, dependencies ONLY when we are in the desired page
+    },
+    {
+        path: '**',
+        component: NotFound
     }
 ];
