@@ -33,7 +33,7 @@ export const routes: Routes = [
         // angular will load all features, imgs, text, dependencies ONLY when we are in the desired page
     },
     {
-        path: 'new-theme',
+        path: 'add-theme',
         loadComponent: ()=> import('./features/themes/new-theme/new-theme').then(c=> c.NewTheme) 
         // angular will load all features, imgs, text, dependencies ONLY when we are in the desired page
     },
