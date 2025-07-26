@@ -43,9 +43,9 @@ export class AuthService {
         return false;
     }
 
-    register(username: string, email: string, password: string, rePassword: string): boolean {
-        if (username && email && password && rePassword) {
-            if (rePassword === password) {
+    register(username: string, email: string, phone: string, password: string, rePassword: string): boolean {
+        if (username && email && phone && password && rePassword) {
+            //we send the pass and rePass ro backend to check
                 const newUser: User = {
                     id: `user_${Date.now}`,
                     username: username
@@ -55,10 +55,12 @@ export class AuthService {
                 this._currentUser.set(newUser);
                 this._isLoggedIn.set(true);
 
+
+                //it shpuld be a call to the backend
                 localStorage.setItem('currentUser', JSON.stringify(newUser))
 
                 return true;
-            }
+            
         }
         return false;
     }
