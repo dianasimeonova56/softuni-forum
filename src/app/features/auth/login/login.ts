@@ -43,7 +43,7 @@ export class Login {
       this.passwordErrorMessage = "Password must be at least 4 chars";
     } else {
       this.passwordError = false;
-      this.emailErrorMessage = '';
+      this.passwordErrorMessage = '';
     }
   }
 
