@@ -35,5 +35,10 @@ export const routes: Routes = [
     {
         path: '**',
         component: NotFound
+    },
+    {
+        path: 'logout',
+        redirectTo: '/home',
+        pathMatch: 'full'
     }
 ];

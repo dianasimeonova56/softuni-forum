@@ -11,7 +11,7 @@
                     <a routerLink="/profile">{{ currentUser()?.username }}'s profile</a>
                 </li>
                 <li>
-                    <a href="#" (click)="logout()">Logout</a>
+                    <a routerLink="/logout" (click)="logout()">Logout</a>
                 </li>
                 } @else {
                 <li>
