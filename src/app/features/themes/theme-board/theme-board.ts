@@ -4,7 +4,7 @@ import { Post, Theme } from '../../../models';
 import { ThemeItem } from "../theme-item/theme-item";
 import { Observable, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { PostItem } from '../post-item/post-item';
+import { PostItem } from '../../post/index';
 import { RouterLink } from '@angular/router';
 
 @Component({
