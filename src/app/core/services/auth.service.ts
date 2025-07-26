@@ -11,9 +11,9 @@ export class AuthService {
     private _isLoggedIn = signal<boolean>(false); //only the service can access the signals
     private _currentUser = signal<User | null>(null);
     private _users: User[] = [
-        { id: '5fa64a072183ce1728ff3719', username: "David" },
-        { id: '5fa64b162183ce1728ff371d', username: "Johny" },
-        { id: '5fa64b972183ce1728ff3720', username: "Donald" },
+        { id: '5fa64a072183ce1728ff3719', username: "David", email: 'john.doe@gmail.com', phone: '+359 885 888 888' },
+        { id: '5fa64b162183ce1728ff371d', username: "Johny",  email:'johny.doe@gmail.com', phone: '+359 886 888 888' },
+        { id: '5fa64b972183ce1728ff3720', username: "Donald",  email:'donald.doe@gmail.com', phone: '+359 887 888 888' },
     ]
 
     public isLoggedIn = this._isLoggedIn.asReadonly(); // componnets can only READ it cant modify it 
@@ -48,7 +48,9 @@ export class AuthService {
             //we send the pass and rePass ro backend to check
                 const newUser: User = {
                     id: `user_${Date.now}`,
-                    username: username
+                    username,
+                    email,
+                    phone
                 }
                 this._users.push(newUser);
 

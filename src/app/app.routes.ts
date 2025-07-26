@@ -20,5 +20,10 @@ export const routes: Routes = [
         path: 'register',
         loadComponent: ()=> import('./features/auth/register/register').then(c=> c.Register) 
         // angular will load all features, imgs, text, dependencies ONLY when we are in the desired page
+    },
+    {
+        path: 'profile',
+        loadComponent: ()=> import('./features/profile/profile').then(c=> c.Profile) 
+        // angular will load all features, imgs, text, dependencies ONLY when we are in the desired page
     }
 ];
