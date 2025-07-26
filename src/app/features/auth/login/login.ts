@@ -1,10 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
@@ -23,7 +25,7 @@ export class Login {
     if(!this.email) {
       this.emailError = true;
       this.emailErrorMessage = 'Email is required';
-    } else if(this.isValidEmail(this.email)) {
+    } else if(!this.isValidEmail(this.email)) {
       this.emailError = true;
       this.emailErrorMessage = 'Email is not valid';
     } else {
@@ -63,7 +65,7 @@ export class Login {
   }
 
   private isValidEmail(email: string): boolean {
-    const emailRegex = /^(?=.{6,})[a-zA-Z][a-zA-Z0-9._-]*@gmail\.(com|bg)$/;
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return emailRegex.test(email);
   }
 }

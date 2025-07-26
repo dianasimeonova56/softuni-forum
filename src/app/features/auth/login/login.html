@@ -10,7 +10,8 @@
                 id="email"
                 placeholder="john.doe@gmail.com"
                 [(ngModel)]="email" 
-                (blur)="validateEmail()">
+                (blur)="validateEmail()"
+                name="email">
         </p>
         @if (emailError) {
         <p class="error">
@@ -25,8 +26,9 @@
                 type="password"
                 id="password"
                 placeholder="******" 
-                [(ngModel)]="email" 
-                (blur)="validatePassword()">
+                [(ngModel)]="password" 
+                (blur)="validatePassword()"
+                name="password">
         </p>
         @if (passwordError) {
         <p class="error">
