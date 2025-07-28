@@ -24,11 +24,11 @@ export class Login  {
     })
   }
 
-  get email() {
+  get email(): AbstractControl<any, any> | null {
     return this.loginForm.get('email');
   }
 
-  get password() {
+  get password(): AbstractControl<any, any> | null {
     return this.loginForm.get('password');
   }
 

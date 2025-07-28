@@ -1,14 +1,14 @@
-<form class="register" (ngSubmit)="onSubmit()">
+<form class="register" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <fieldset>
     <h2>Registration Form</h2>
 
     <!-- username -->
     <p class="field field-icon">
       <label for="username"><span><i class="fas fa-user"></i></span></label>
-      <input [class.input-error]="validateUsername" type="text" id="username" placeholder="Johny"
-        name="username" [(ngModel)]="username" (blur)="validateUsername()">
+      <input [class.input-error]="isUsernameValid" type="text" id="username" placeholder="Johny"
+      formControlName="username">
     </p>
-    @if (usernameError) {
+    @if (isUsernameValid) {
     <p class="error">
       {{ usernameErrorMessage }}
     </p>
@@ -17,10 +17,10 @@
     <!-- email -->
     <p class="field field-icon">
       <label for="email"><span><i class="fas fa-envelope"></i></span></label>
-      <input [class.input-error]="validateEmail" type="email" id="email" placeholder="john.doe@gmail.com"
-         name="email" [(ngModel)]="email" (blur)="validateEmail()">
+      <input [class.input-error]="isEmailValid" type="email" id="email" placeholder="john.doe@gmail.com"
+         formControlName="email">
     </p>
-    @if (emailError) {
+    @if (isEmailValid) {
     <p class="error">
       {{ emailErrorMessage }}
     </p>
@@ -32,22 +32,17 @@
       <select name="select-tel" id="select-tel" class="tel" >
         <option value="00359">+359</option>
       </select>
-      <input type="text" id="tel" placeholder="885 888 888" name="phone" [(ngModel)]="phone" (blur)="validatePhone()">
+      <input type="text" id="tel" placeholder="885 888 888" name="phone" formControlName="phone">
     </p>
-    @if(phoneError) {
-        <p class="error">
-            {{phoneErrorMessage}}
-        </p>
-    }
 
     <div formGroupName="passwords">
       <!-- password -->
       <p class="field field-icon">
         <label for="password"><span><i class="fas fa-lock"></i></span></label>
-        <input [class.input-error]="validatePassword" type="password" id="password" placeholder="******"
-           name="password" [(ngModel)]="password" (blur)="validatePassword()">
+        <input [class.input-error]="isPasswordsValid" type="password" id="password" placeholder="******"
+           name="password" formControlName="password">
       </p>
-      @if (passwordError) {
+      @if (isPasswordsValid) {
       <p class="error">
         {{ passwordErrorMessage }}
       </p>
@@ -56,17 +51,17 @@
       <!-- rePassword -->
       <p class="field field-icon">
         <label for="rePassword"><span><i class="fas fa-lock"></i></span></label>
-        <input [class.input-error]="validateRePassword" type="password" id="rePassword" placeholder="******"
-           name="rePassword" [(ngModel)]="rePassword" (blur)="validateRePassword()">
+        <input [class.input-error]="isPasswordsValid" type="password" id="rePassword" placeholder="******"
+           name="rePassword" formControlName="rePassword">
       </p>
-      @if (rePasswordError) {
+      @if (isPasswordsValid) {
       <p class="error">
         {{ rePasswordErrorMessage }}
       </p>
       }
     </div>
 
-    <button [disabled]="!isFormValid()">Create Account</button>
+    <button [disabled]="this.registerForm.invalid">Create Account</button>
 
     <p class="text-center">
       Have an account?
