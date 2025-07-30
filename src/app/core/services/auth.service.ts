@@ -12,8 +12,8 @@ export class AuthService {
     private _currentUser = signal<User | null>(null);
     private _users: User[] = [
         { id: '5fa64a072183ce1728ff3719', username: "David", email: 'john.doe@gmail.com', phone: '+359 885 888 888' },
-        { id: '5fa64b162183ce1728ff371d', username: "Johny",  email:'johny.doe@gmail.com', phone: '+359 886 888 888' },
-        { id: '5fa64b972183ce1728ff3720', username: "Donald",  email:'donald.doe@gmail.com', phone: '+359 887 888 888' },
+        { id: '5fa64b162183ce1728ff371d', username: "Johny", email: 'johny.doe@gmail.com', phone: '+359 886 888 888' },
+        { id: '5fa64b972183ce1728ff3720', username: "Donald", email: 'donald.doe@gmail.com', phone: '+359 887 888 888' },
     ]
 
     public isLoggedIn = this._isLoggedIn.asReadonly(); // componnets can only READ it cant modify it 
@@ -46,23 +46,23 @@ export class AuthService {
     register(username: string, email: string, phone: string, password: string, rePassword: string): boolean {
         if (username && email && phone && password && rePassword) {
             //we send the pass and rePass ro backend to check
-                const newUser: User = {
-                    id: `user_${Date.now}`,
-                    username,
-                    email,
-                    phone
-                }
-                this._users.push(newUser);
+            const newUser: User = {
+                id: `user_${Date.now}`,
+                username,
+                email,
+                phone
+            }
+            this._users.push(newUser);
 
-                this._currentUser.set(newUser);
-                this._isLoggedIn.set(true);
+            this._currentUser.set(newUser);
+            this._isLoggedIn.set(true);
 
 
-                //it shpuld be a call to the backend
-                localStorage.setItem('currentUser', JSON.stringify(newUser))
+            //it shpuld be a call to the backend
+            localStorage.setItem('currentUser', JSON.stringify(newUser))
 
-                return true;
-            
+            return true;
+
         }
         return false;
     }
@@ -76,5 +76,20 @@ export class AuthService {
 
     getCurrentUserId(): string | null {
         return this._currentUser()?.id || null
+    }
+
+    updateUser(user: User): void {
+        const userIndex = this._users.findIndex(u => u.id === user.id);
+
+        if (userIndex !== -1) {
+            this._users[userIndex] = user;
+             console.log(this._users[userIndex]);
+        }
+       
+        
+
+        this._currentUser.set(user);
+
+        localStorage.setItem('currentUser', JSON.stringify(user));
     }
 }

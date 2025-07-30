@@ -53,7 +53,7 @@ export class Register {
   }
 
   get isUsernameValid(): boolean {
-    return this.username?.invalid && (this.username?.dirty && this.username?.touched) || false
+    return this.username?.invalid && (this.username?.dirty || this.username?.touched) || false
   }
 
   get isEmailValid(): boolean {

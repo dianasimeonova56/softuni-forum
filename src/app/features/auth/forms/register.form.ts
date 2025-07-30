@@ -6,7 +6,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators }
 })
 export class RegisterFormService {
     private formBuilder = inject(FormBuilder);
-
+//може да подаваме типа форма за да преизползваме сървиса
     createForm(): FormGroup {
         return this.formBuilder.group({
             username: ['', [Validators.required, Validators.minLength(5)]],
