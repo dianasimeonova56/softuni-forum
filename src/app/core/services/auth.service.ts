@@ -38,17 +38,17 @@ export class AuthService {
                 localStorage.setItem('currentUser', JSON.stringify(user))
             })
         );
-        
+
     }
 
     register(username: string, email: string, phone: string, password: string, rePassword: string): Observable<User> {
-        return this.httpClient.post<ApiUser>(`${this.apiUrl}/register`, { 
+        return this.httpClient.post<ApiUser>(`${this.apiUrl}/register`, {
             username,
             email,
             tel: phone,
             password,
             rePassword
-         }, {
+        }, {
             withCredentials: true
         }).pipe(
             map(apiUser => this.mapApiUserToUser(apiUser)),
@@ -61,10 +61,10 @@ export class AuthService {
     }
 
     logout(): Observable<void> {
-         return this.httpClient.post<void>(`${this.apiUrl}/logout`, {}, {
+        return this.httpClient.post<void>(`${this.apiUrl}/logout`, {}, {
             withCredentials: true
         }).pipe(
-            tap(()=> {
+            tap(() => {
                 this._currentUser.set(null);
                 this._isLoggedIn.set(false);
                 localStorage.removeItem('currentUser')
@@ -94,8 +94,11 @@ export class AuthService {
         );
     }
 
+    getToken(): string {
+        return 'FAKE_TOKEN=12345'
+    }
     private mapApiUserToUser(apiUser: ApiUser): User {
-        return <User> {
+        return <User>{
             id: apiUser._id,
             username: apiUser.username,
             email: apiUser.email,
