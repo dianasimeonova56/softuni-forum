@@ -10,7 +10,7 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
-export class Login  {
+export class Login {
   private authService = inject(AuthService);
   private router = inject(Router);
   private formBuilder = inject(FormBuilder);
@@ -63,14 +63,17 @@ export class Login  {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const {email, password} = this.loginForm.value;
-      const response = this.authService.login(email, password);
-
-      if (response) {
-        this.router.navigate(['/home']);
-      } else {
-        this.markFormGroupTouched();
-      }
+      const { email, password } = this.loginForm.value;
+      this.authService.login(email, password).subscribe({
+        next: () => {
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          console.log("Login failed", err);
+          
+          this.markFormGroupTouched();
+        }
+      })
     }
   }
 
@@ -80,20 +83,14 @@ export class Login  {
       control?.markAsTouched();
     })
   }
-
-  // private isValidEmal(email: string): boolean {
-    
-
-  //   return emailRegex.test(email)
-  // }
 }
 
 export function emailValidator(emailControl: AbstractControl): ValidationErrors | null {
   const emailRegex = /^(?=.{6,})[a-zA-Z][a-zA-Z0-9._-]*@gmail\.(com|bg)$/;
   const email = emailControl.value;
 
-  if(email && !emailRegex.test(email)) {
-    return {emailValidator: true}
+  if (email && !emailRegex.test(email)) {
+    return { emailValidator: true }
   }
 
   return null;
