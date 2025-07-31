@@ -22,7 +22,11 @@ export class ThemeBoard{
 
   constructor(private themeService: ThemesService, 
     private postService: PostsService) { 
-    this.theme$ = this.themeService.getThemes();
-    this.posts$ = this.postService.getPosts();
+
+    this.posts$ = this.postService.posts$;
+    this.theme$ = this.themeService.themes$;
+
+    this.themeService.getThemes().subscribe();
+    this.postService.getPosts().subscribe();
   }
-}
+} 
